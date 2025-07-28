@@ -37,7 +37,7 @@
 
             <ul class="location-info">
                 <li class="location-item">
-                    <EnvironmentTwoTone  :twoToneColor="['#dc2626', '#dc2626']" class="location-icon" />
+                    <EnvironmentTwoTone :twoToneColor="['#dc2626', '#dc2626']" class="location-icon" />
                     <span>Xem sản phẩm tại:</span>
                     <span class="location-address">Phường 3, Quận Bình Thạnh, TP.HCM</span>
                 </li>
@@ -79,14 +79,15 @@ const menuItems = [
     border-bottom: 1px solid #e8e8e8;
     padding: 0px 0;
     display: flex;
-
+    width: 100vw;
+    justify-content: center;
 }
 
 .container {
-    max-width: 1200px;
+    min-width: 1300px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .nav-menu {
@@ -101,7 +102,8 @@ const menuItems = [
 }
 
 .menu-link {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -130,7 +132,8 @@ const menuItems = [
 }
 
 .location-item {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
     white-space: nowrap;
     display: flex;
     align-items: center;

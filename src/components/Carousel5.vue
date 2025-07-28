@@ -1,59 +1,54 @@
 <template>
-  <div class="crs">
-    <div class="carousel-container">
-      <div class="carousel-wrapper">
-        <button class="nav-btn nav-btn-left" @click="prevSlide" :disabled="currentIndex === 0">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15,18 9,12 15,6"></polyline>
-          </svg>
-        </button>
+  <div class="carousel-container">
+    <div class="carousel-wrapper">
+      <button class="nav-btn nav-btn-left" @click="prevSlide" :disabled="currentIndex === 0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
 
-        <div class="carousel-viewport" ref="carouselViewport">
-          <div class="carousel-track" ref="carouselTrack" :style="{
-            transform: `translateX(calc(-${currentIndex * stackWidthPercent}% + ${dragOffset}px))`,
-            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-          }" @mousedown="handleDragStart" @mousemove="handleDragMove" @mouseup="handleDragEnd"
-            @mouseleave="handleDragEnd" @touchstart="handleDragStart" @touchmove="handleDragMove"
-            @touchend="handleDragEnd" @touchcancel="handleDragEnd">
-            <div class="stack" v-for="(stack, stackIndex) in stacks" :key="stackIndex">
-              <!-- Stack thứ 3 và 7 (index 2, 6) là thẻ lớn -->
-              <div v-if="stackIndex === 2 || stackIndex === 6" class="card card-large"
-                :style="{ background: stack.largeCard.color }">
+      <div class="carousel-viewport" ref="carouselViewport">
+        <div class="carousel-track" ref="carouselTrack" :style="{
+          transform: `translateX(calc(-${currentIndex * stackWidthPercent}% + ${dragOffset}px))`,
+          transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        }" @mousedown="handleDragStart" @mousemove="handleDragMove" @mouseup="handleDragEnd"
+          @mouseleave="handleDragEnd" @touchstart="handleDragStart" @touchmove="handleDragMove"
+          @touchend="handleDragEnd" @touchcancel="handleDragEnd">
+          <div class="stack" v-for="(stack, stackIndex) in stacks" :key="stackIndex">
+            <!-- Stack thứ 3 và 7 (index 2, 6) là thẻ lớn -->
+            <div v-if="stackIndex === 2 || stackIndex === 6" class="card card-large"
+              :style="{ background: stack.largeCard.color }">
+              <div class="card-name">
+                <h3>{{ stack.largeCard.name }}</h3>
+              </div>
+              <div class="card-image">
+                <img :src="stack.largeCard.image" :alt="stack.largeCard.name" />
+              </div>
+            </div>
+
+            <!-- Các stack khác có 2 thẻ nhỏ -->
+            <template v-else>
+              <div class="card card-small" v-for="card in stack.cards" :key="card.id"
+                :style="{ background: card.color }">
                 <div class="card-name">
-                  <h3>{{ stack.largeCard.name }}</h3>
+                  <h3>{{ card.name }}</h3>
                 </div>
                 <div class="card-image">
-                  <img :src="stack.largeCard.image" :alt="stack.largeCard.name" />
+                  <img :src="card.image" :alt="card.name" />
                 </div>
               </div>
-
-              <!-- Các stack khác có 2 thẻ nhỏ -->
-              <template v-else>
-                <div class="card card-small" v-for="card in stack.cards" :key="card.id"
-                  :style="{ background: card.color }">
-                  <div class="card-name">
-                    <h3>{{ card.name }}</h3>
-                  </div>
-                  <div class="card-image">
-                    <img :src="card.image" :alt="card.name" />
-                  </div>
-                </div>
-              </template>
-            </div>
+            </template>
           </div>
         </div>
-
-        <button class="nav-btn nav-btn-right" @click="nextSlide"
-          :disabled="currentIndex >= totalStacks - visibleStacks">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9,6 15,12 9,18"></polyline>
-          </svg>
-        </button>
       </div>
+
+      <button class="nav-btn nav-btn-right" @click="nextSlide" :disabled="currentIndex >= totalStacks - visibleStacks">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9,6 15,12 9,18"></polyline>
+        </svg>
+      </button>
     </div>
   </div>
-  <div class="hehe" style="height: 55px;"></div>
-
 </template>
 
 <script setup>
@@ -141,18 +136,12 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.crs {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .carousel-container {
   height: 200px;
   width: 100%;
   max-width: 1310px;
   /* margin: 0 auto; */
-  padding: 0 0 0 0px;
+  padding: 0 0 0 30px;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   background: #F3F4F6;

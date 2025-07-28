@@ -49,57 +49,70 @@ export default defineComponent({
 </script>
 
 <template>
-    <a-layout-header class="header">
-        <div class="left-section">
-            <img :src="logoUrl" alt="FPT Shop Logo" class="logo" />
+    <div class="header-container">
+        <a-layout-header class="header">
+            <div class="left-section">
+                <img :src="logoUrl" alt="FPT Shop Logo" class="logo" />
 
-            <a-dropdown>
-                <a-button class="category-button">
-                    <MenuOutlined /> Danh mục
-                </a-button>
-            </a-dropdown>
+                <a-dropdown>
+                    <a-button class="category-button">
+                        <MenuOutlined /> Danh mục
+                    </a-button>
+                </a-dropdown>
 
-            <div class="search-container">
-                <div class="search-bar">
-                    <input v-model="searchQuery" type="text"
-                        placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm" />
-                    <button @click="onSearch" title="Tìm kiếm" class="search-btn">
-                        <SearchOutlined class="search-icon" />
-                    </button>
-                </div>
-                <div class="hot-keyword">
-                    <a href="">iphone 16</a>
-                    <a href="">laptop</a>
-                    <a href="">apple watch</a>
-                    <a href="">ipad</a>
-                    <a href="">máy lạnh</a>
-                    <a href="">robot hút bụi</a>
-                    <a href="">samsung</a>
-                    <a href="">carseat</a>
+                <div class="search-container">
+                    <div class="search-bar">
+                        <input v-model="searchQuery" type="text"
+                            placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm" />
+                        <button @click="onSearch" title="Tìm kiếm" class="search-btn">
+                            <SearchOutlined class="search-icon" />
+                        </button>
+                    </div>
+                    <div class="hot-keyword">
+                        <a href="">iphone 16</a>
+                        <a href="">laptop</a>
+                        <a href="">apple watch</a>
+                        <a href="">ipad</a>
+                        <a href="">máy lạnh</a>
+                        <a href="">robot hút bụi</a>
+                        <a href="">samsung</a>
+                        <a href="">carseat</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="right-section">
-            <a-avatar class="avatar">
-                <UserOutlined class="avatar-icon" />
-            </a-avatar>
-            <a-badge count="0" class="cart-badge">
-                <a-button class="cart-button">
-                    <ShoppingCartOutlined />
-                    Giỏ hàng
-                </a-button>
-            </a-badge>
+            <div class="right-section">
+                <a-avatar class="avatar">
+                    <UserOutlined class="avatar-icon" />
+                </a-avatar>
+                <a-badge count="0" class="cart-badge">
+                    <a-button class="cart-button">
+                        <ShoppingCartOutlined />
+                        Giỏ hàng
+                    </a-button>
+                </a-badge>
 
 
-        </div>
-    </a-layout-header>
+            </div>
+        </a-layout-header>
+    </div>
+
 </template>
 
 <style scoped>
-.header {
-    width: 100%;
+.header-container {
+    position: relative;
+    width: 100vw;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(5deg, #cb1c22 67.61%, #d9503f 95.18%);
+
+}
+
+.header {
+    min-width: 1300px;
     display: flex;
     align-items: start;
     justify-content: center;
@@ -180,7 +193,7 @@ export default defineComponent({
     color: #7e161c;
 }
 
-.hot-keyword{
+.hot-keyword {
 
     display: flex;
     flex-direction: row;
@@ -190,7 +203,8 @@ export default defineComponent({
 
 .hot-keyword a {
     text-decoration: none;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
     line-height: 22px;
     font-size: 15px;
     color: #fff;

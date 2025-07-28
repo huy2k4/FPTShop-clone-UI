@@ -110,41 +110,11 @@ onUnmounted(() => {
         <div class="golden-hour-top">
             <img alt="https://fptshop.com.vn/" loading="lazy" width="1180" height="133.75" decoding="async"
                 style="color: transparent;"
-                srcset="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Property_1_Variant12_b59b14249c.png 1x"
-                src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Property_1_Variant12_b59b14249c.png" />
+                srcset="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/GSOL_1_45b6bd3013.png 1x"
+                src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/GSOL_1_45b6bd3013.png" />
         </div>
 
         <div class="golden-hour-board">
-            <div class="golden-hour-date">
-                <ul class="datelist">
-                    <li class="date-item active">
-                        <div class="date-text">12:00, 24/07</div>
-                        <p class="status-text">
-                            Bắt đầu sau:
-                            <span class="countdown">
-                                <span class="time-digit">00</span>
-                                <span class="separator">:</span>
-                                <span class="time-digit">37</span>
-                                <span class="separator">:</span>
-                                <span class="time-digit">15</span>
-                            </span>
-                        </p>
-                    </li>
-                    <li class="date-item waiting">
-                        <div class="date-text">25/07</div>
-                        <p class="status-text">Sắp diễn ra</p>
-                    </li>
-                    <li class="date-item waiting">
-                        <div class="date-text">26/07</div>
-                        <p class="status-text">Sắp diễn ra</p>
-                    </li>
-                    <li class="date-item waiting">
-                        <div class="date-text">27/07</div>
-                        <p class="status-text">Sắp diễn ra</p>
-                    </li>
-                </ul>
-            </div>
-
             <div class="carousel-container">
                 <button class="nav-button nav-prev" @click="prevSlide" :disabled="!canGoPrev"
                     :class="{ disabled: !canGoPrev }">
@@ -219,9 +189,7 @@ onUnmounted(() => {
                                 <div class="product-name">
                                     <p class="product-name-text">{{ stack.productName }}</p>
                                 </div>
-                                <div class="product-button">
-                                    <a-button type="primary" class="buy-button">Mua giá sốc</a-button>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -248,120 +216,32 @@ onUnmounted(() => {
 }
 
 .golden-hour-top {
-    height: 233.75px;
-    padding: 100px 0 0 80px;
+    height: 183.75px;
+    padding: 50px 0 0 80px;
     width: 100%;
 }
 
 .golden-hour-board {
     width: 1180px;
-    height: 504px;
+    height: fit-content;
     background: linear-gradient(180deg, #FFB2C8 0%, #FFC1D4 100%);
-    margin: 0 0 0 80px;
-    padding: 0px 12px 16px 12px;
+    margin: 0 0 0px 80px;
+    padding: 0px 12px 10px 12px;
     border-radius: 0 0 16px 16px;
 }
-
-.golden-hour-date {
-    width: 100%;
-}
-
-.datelist {
-    border-bottom: 1px solid #D1D5DB;
-    background: #ffffff;
-    border-radius: 20px 20px 0 0;
-    display: flex;
-    flex-direction: row;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    gap: 0;
-}
-
-.date-item {
-    height: 72px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 12px 16px;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.date-item.active {
-    width: 237px;
-    background: #FEE2E2;
-    border-radius: 15px 0px 0 0;
-    border-bottom: 3px solid #ef4444;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.date-item.waiting {
-    width: 136px;
-    background: rgba(255, 255, 255, 0.3);
-    border-bottom: 3px solid transparent;
-}
-
-.date-item.waiting:hover {
-    background: #FEE2E2;
-}
-
-.date-text {
-    font-size: 16px;
-    font-weight: 700;
-    color: #1f2937;
-    margin: 0;
-    line-height: 1.2;
-    margin-bottom: 4px;
-}
-
-.status-text {
-    font-size: 13px;
-    color: #6b7280;
-    margin: 0;
-    line-height: 1.2;
-    font-weight: 500;
-}
-
-.countdown {
-    font-weight: 700;
-    color: #ef4444;
-}
-
-.time-digit {
-    display: inline-block;
-    background: #ef4444;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 700;
-    min-width: 20px;
-    text-align: center;
-}
-
-.separator {
-    color: #ef4444;
-    font-weight: 700;
-    margin: 0 2px;
-}
-
 .carousel-container {
     position: relative;
     display: flex;
     align-items: center;
     background-color: #ffffff;
-    border-radius: 0 0 16px 16px;
+    border-radius: 16px;
     overflow: hidden;
 }
 
 .carousel-viewport {
     flex: 1;
     overflow: hidden;
-    height: 420px;
+    height: 370px;
 }
 
 .carousel-track {
@@ -543,7 +423,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    
+
 }
 
 .price-detail {
@@ -587,23 +467,18 @@ onUnmounted(() => {
 }
 
 .product-name-text {
-    font-size: 14px;
-
-    font-weight: 400;
-    color: #090d14;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1f2937;
     margin: 0;
-    line-height: 20px;
+    line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
 }
 
-.product-button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+
 
 .buy-button {
     width: 91%;
