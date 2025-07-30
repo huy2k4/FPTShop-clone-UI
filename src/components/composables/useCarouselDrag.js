@@ -180,7 +180,6 @@ export function useCarouselDrag(totalStacks, visibleStacks, currentIndex) {
       cancelAnimationFrame(momentumAnimation.value);
     }
   };
-
   // Set cursor style on mount
   const initializeCursor = () => {
     if (carouselTrack.value) {

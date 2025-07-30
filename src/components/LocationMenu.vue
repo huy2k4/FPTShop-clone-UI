@@ -87,7 +87,7 @@ const menuItems = [
     min-width: 1300px;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .nav-menu {

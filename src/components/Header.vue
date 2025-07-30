@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, onMounted, onUnmounted } from 'vue';
 import {
     Layout,
     Dropdown,
@@ -31,6 +31,8 @@ export default defineComponent({
         SearchOutlined
     },
     setup() {
+        const isCateHover = ref(false);
+        const isHeaderFixed = ref(false);
         const logoUrl =
             'https://cdn2.fptshop.com.vn/unsafe/360x0/filters:format(webp):quality(75)/small/fptshop_logo_c5ac91ae46.png';
         const searchQuery = ref('');
@@ -39,27 +41,61 @@ export default defineComponent({
             alert(`Bạn vừa tìm: ${searchQuery.value}`);
         };
 
+        const handleCategoryHover = (isHover) => {
+            isCateHover.value = isHover;
+        };
+
+        const handleScroll = () => {
+            if (window.scrollY > 600) {
+                isHeaderFixed.value = true;
+            } else {
+                isHeaderFixed.value = false;
+            }
+        };
+
+        // Thêm event listener khi component được mount
+        onMounted(() => {
+            window.addEventListener('scroll', handleScroll);
+        });
+
+        onUnmounted(() => {
+            window.removeEventListener('scroll', handleScroll);
+        });
+
         return {
             logoUrl,
             searchQuery,
-            onSearch
+            onSearch,
+            isCateHover,
+            isHeaderFixed,
+            handleCategoryHover
         };
     }
 });
 </script>
 
 <template>
-    <div class="header-container">
+    <div :class="['header-container', { 'fixed-header': isHeaderFixed }]">
         <a-layout-header class="header">
             <div class="left-section">
                 <img :src="logoUrl" alt="FPT Shop Logo" class="logo" />
-
-                <a-dropdown>
+                <div class="cate-btn-hover" @mouseenter="handleCategoryHover(true)"
+                    @mouseleave="handleCategoryHover(false)">
                     <a-button class="category-button">
                         <MenuOutlined /> Danh mục
                     </a-button>
-                </a-dropdown>
 
+                    <!-- Dropdown menu hiển thị khi hover -->
+                    <div :class="['dropdown-menu', { 'active': isCateHover }]">
+                        <div class="menu-content">
+                            <img src="https://as2.ftcdn.net/v2/jpg/03/93/52/43/1000_F_393524375_58iWZrcnROU7SV33zfk77pWNUIdAgTPb.jpg"
+                                alt="Middle Finger Up Hand Gesture Flipping Off. Vector Illustrator. vector ..."
+                                class=" nofocus" tabindex="0"
+                                aria-label="Middle Finger Up Hand Gesture Flipping Off. Vector Illustrator. vector ..."
+                                role="button">
+                        </div>
+                    </div>
+                </div>
                 <div class="search-container">
                     <div class="search-bar">
                         <input v-model="searchQuery" type="text"
@@ -91,12 +127,9 @@ export default defineComponent({
                         Giỏ hàng
                     </a-button>
                 </a-badge>
-
-
             </div>
         </a-layout-header>
     </div>
-
 </template>
 
 <style scoped>
@@ -108,7 +141,28 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     background: linear-gradient(5deg, #cb1c22 67.61%, #d9503f 95.18%);
+    transition: all 0.3s ease;
+}
 
+.header-container.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .header {
@@ -133,6 +187,11 @@ export default defineComponent({
     margin-right: 20px;
 }
 
+.cate-btn-hover {
+    position: relative;
+    z-index: 1000;
+}
+
 .category-button {
     border-radius: 30px;
     min-height: fit-content;
@@ -144,6 +203,39 @@ export default defineComponent({
     background: #7e161c;
     color: white;
     border: none;
+}
+
+.category-button:hover {
+    background: #990000;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+    width: 1240px;
+    height: 640px;
+    position: absolute;
+    opacity: 1;
+    top: 52px;
+    left: -210px;
+    background: white;
+    border-radius: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menu-content {
+    padding: 12px 0;
 }
 
 .search-container {
@@ -161,7 +253,6 @@ export default defineComponent({
     border-radius: 35px;
     padding: 6px 12px;
     min-width: 565px;
-    /* max-width: 565px; */
     margin: 0px 0px 0px 0px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
     flex-grow: 1;
@@ -194,7 +285,6 @@ export default defineComponent({
 }
 
 .hot-keyword {
-
     display: flex;
     flex-direction: row;
     gap: 1px;
@@ -218,7 +308,6 @@ export default defineComponent({
 .right-section {
     padding: 20px 0 0 0;
     height: 60px;
-    /* background-color: aliceblue; */
     gap: 10px;
     display: flex;
     align-items: center;
@@ -228,10 +317,6 @@ export default defineComponent({
     display: flex;
     align-items: center;
     height: fit-content;
-    /* background-color: #d9503f; */
-    /* border-radius: 10px; */
-    /* width: 80px; */
-    /* margin-right: 20px; */
 }
 
 .cart-button {
@@ -257,19 +342,5 @@ export default defineComponent({
 
 .avatar-icon {
     font-size: 18px;
-}
-
-.ant-dropdown-menu {
-    background: linear-gradient(5deg, #cb1c22 67.61%, #d9503f 95.18%);
-    color: white;
-}
-
-.ant-dropdown-menu-item {
-    color: white !important;
-}
-
-.ant-dropdown-menu-item:hover {
-    background: #990000;
-    color: white !important;
 }
 </style>

@@ -9,9 +9,14 @@ import GoldenHour from './components/GoldenHour.vue';
 import GoodPrice from './components/GoodPrice.vue';
 import Carousel3Stack from './components/Carousel3Stack.vue';
 import DealReels from './components/DealReels.vue';
+import FloatingIcons from './components/FloatingIcons.vue';
+import OnlineShoping from './components/OnlineShoping.vue';
+import Footer from './components/Footer.vue';
+import Advantage from './components/Advantage.vue';
 </script>
 
 <template>
+  <FloatingIcons />
   <Header />
   <LocationMenu />
   <Test />
@@ -20,7 +25,10 @@ import DealReels from './components/DealReels.vue';
   <GoodPrice />
   <Carousel3Stack />
   <Carousel5 />
+  <OnlineShoping />
   <DealReels />
+  <Advantage />
+  <Footer/>
 </template>
 <style>
 * {

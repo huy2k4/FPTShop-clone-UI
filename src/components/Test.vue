@@ -63,7 +63,7 @@ import { ref } from 'vue';
 
 // Main Banner Logic
 const mainBanners = [
-  'https://cdn2.fptshop.com.vn/unsafe/750x0/filters:format(webp)/mb_header_6_accc9b66d0.png',
+  'https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/desk_header_5_55a47745cb.png',
   'https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp)/desk_header_8107ca637d.png'
 ];
 const currentIndex = ref(0);
@@ -149,7 +149,7 @@ const handleDragEnd = () => {
 .main-banner-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,10 +157,9 @@ const handleDragEnd = () => {
 
 .main-banner {
   display: block;
-  max-width: 100%;
-  height: auto;
-  min-height: 300px;
-  margin: 0 auto;
+  width: 1240px;
+  height: 285px;
+  margin: 0;
 }
 
 /* Navigation Buttons */
@@ -197,7 +196,7 @@ const handleDragEnd = () => {
 .bottom-banners-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1180px;
 }
 
 .bottom-slide-container {

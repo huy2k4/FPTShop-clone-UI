@@ -149,7 +149,7 @@ onUnmounted(() => {
 }
 .carousel-container {
   height: 200px;
-  width: 100%;
+  /* width: 100%; */
   max-width: 1310px;
   /* margin: 0 auto; */
   padding: 0 0 0 0px;
@@ -169,6 +169,7 @@ onUnmounted(() => {
 }
 
 .carousel-viewport {
+  width: 1180px;
   flex: 1;
   overflow: hidden;
   border-radius: 12px;
