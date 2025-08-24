@@ -56,6 +56,7 @@
 
 </template>
 
+
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useCarouselDrag } from './composables/useCarouselDrag.js';
